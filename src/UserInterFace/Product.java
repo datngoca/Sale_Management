@@ -122,6 +122,7 @@ public class Product extends javax.swing.JFrame {
     }
     
     private void Enabled(){
+         // Kích hoạt các nút và trường nhập liệu
         btnClassify.setEnabled(true);
         btnNSX.setEnabled(true);
         txbID.setEnabled(true);
@@ -138,7 +139,7 @@ public class Product extends javax.swing.JFrame {
         cbxProducer.setEnabled(true);
         cbxTime.setEnabled(true);
         btnUpdate.setEnabled(true);
-        lblStatus.setText("Trạng Thái!");
+        lblStatus.setText("");
     }
      
     public void Disabled(){
@@ -560,9 +561,20 @@ public class Product extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Thời Gian Bảo Hành:");
 
+        txbWarrantyPeriod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txbWarrantyPeriodActionPerformed(evt);
+            }
+        });
         txbWarrantyPeriod.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txbWarrantyPeriodKeyReleased(evt);
+            }
+        });
+
+        cbxTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTimeActionPerformed(evt);
             }
         });
 
@@ -894,6 +906,14 @@ public class Product extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cbxTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxTimeActionPerformed
+
+    private void txbWarrantyPeriodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txbWarrantyPeriodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txbWarrantyPeriodActionPerformed
 
     public static void main(String args[]) {
 

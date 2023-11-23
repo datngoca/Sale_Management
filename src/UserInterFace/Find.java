@@ -108,7 +108,8 @@ public class Find extends javax.swing.JFrame {
     private void loadProduct(String sql){
         tableProduct.removeAll();
         try{
-            String [] arr={"Mã Sản Phẩm","Loại linh kiện","Tên linh kiện","Nhà sản xuất","Thời gian bảo hành","Số lượng còn","đơn vị","Giá"};
+            String [] arr={"Mã Sản Phẩm","Loại linh kiện","Tên linh kiện","Nhà sản xuất",
+                "Thời gian bảo hành","Số lượng còn","đơn vị","Giá"};
             DefaultTableModel modle=new DefaultTableModel(arr,0);
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
@@ -134,7 +135,8 @@ public class Find extends javax.swing.JFrame {
     public void loadOrders(String sql){
         tableOrder.removeAll();
         try{
-            String [] arr={"Mã Đơn Hàng","Khách Hàng","Địa Chỉ","Số Điện Thoại","Sản Phẩm","Số Lượng","Giá","Bảo Hành","Thành Tiền","Ngày Đặt","Thanh Toán"};
+            String [] arr={"Mã Đơn Hàng","Khách Hàng","Địa Chỉ","Số Điện Thoại","Sản Phẩm",
+                "Số Lượng","Giá","Bảo Hành","Thành Tiền","Ngày Đặt","Thanh Toán"};
             DefaultTableModel modle=new DefaultTableModel(arr,0);
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
@@ -774,28 +776,6 @@ public class Find extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFindAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindAccountActionPerformed
-        String sqlFind="SELECT * FROM Accounts where UserName like N'%"+this.txbAccount.getText()+"%' or FullName like N'%"+this.txbAccount.getText()+"%' or DateCreated like N'%"+this.txbAccount.getText()+"%'";
-        loadAccount(sqlFind);
-        txbAccount.setText("");
-    }//GEN-LAST:event_btnFindAccountActionPerformed
-
-    private void btnRefreshAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshAccountActionPerformed
-        loadAccount(sqlAccount);
-    }//GEN-LAST:event_btnRefreshAccountActionPerformed
-
-    private void btnFindProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindProductActionPerformed
-        String sql = "SELECT * FROM Products where ID like N'%"+this.txbProduct.getText()+"%' or Classify like N'%"+this.txbProduct.getText()+"%' or Name like N'%"+this.txbProduct.getText()+"%' or Producer like N'%"+this.txbProduct.getText()+"%' or WarrantyPeriod like N'%"+this.txbProduct.getText()+"%' or SingleTime like N'%"+this.txbProduct.getText()+"%' or QuantityRemaining like N'%"+this.txbProduct.getText()+"%' or Unit like N'%"+this.txbProduct.getText()+"%' or Price like N'%"+this.txbProduct.getText()+"%'";
-        loadProduct(sql);
-        txbProduct.setText("");
-    }//GEN-LAST:event_btnFindProductActionPerformed
-
-    private void btnFindEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindEmployeesActionPerformed
-        String sql = "SELECT * FROM NhanVien where Position like N'%"+this.txbEmployees.getText()+"%' or EmployeeCode like N'%"+this.txbEmployees.getText()+"%' or FullName like N'%"+this.txbEmployees.getText()+"%' or YearofBirth like N'%"+this.txbEmployees.getText()+"%' or Sex like N'%"+this.txbEmployees.getText()+"%' or Address like N'%"+this.txbEmployees.getText()+"%' or Phone like N'%"+this.txbEmployees.getText()+"%' or Email like N'%"+this.txbEmployees.getText()+"%' or Level like N'%"+this.txbEmployees.getText()+"' or Payroll like N'%"+this.txbEmployees.getText()+"'";
-        loadEmployees(sql);
-        txbEmployees.setText("");
-    }//GEN-LAST:event_btnFindEmployeesActionPerformed
-
     private void btnBackHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeActionPerformed
         if(this.detail.getUser().toString().toString().equals("Admin")){
             Home home=new Home(detail);
@@ -809,24 +789,6 @@ public class Find extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBackHomeActionPerformed
 
-    private void btnFindProducerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindProducerActionPerformed
-        String sql = "SELECT * FROM Producer where ID like N'%"+this.txbProducer.getText()+"%' or ProducerName like N'%"+this.txbProducer.getText()+"%' or Address like N'%"+this.txbProducer.getText()+"%' or Phone like N'%"+this.txbProducer.getText()+"%' or Email like N'%"+this.txbProducer.getText()+"%'";
-        loadProducer(sql);
-        txbProducer.setText("");
-    }//GEN-LAST:event_btnFindProducerActionPerformed
-
-    private void btnFindpositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindpositionActionPerformed
-        String sql = "SELECT * FROM Position where ID like N'%"+this.txbPosition.getText()+"%' or Position like N'%"+this.txbPosition.getText()+"%' or Payroll like N'%"+this.txbPosition.getText()+"%'";
-        loadPosition(sql);
-        txbPosition.setText("");
-    }//GEN-LAST:event_btnFindpositionActionPerformed
-
-    private void btnFindClassifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindClassifyActionPerformed
-        String sql = "SELECT * FROM Classify where ID like N'%"+this.txbClassify.getText()+"%' or Classify like N'%"+this.txbClassify.getText()+"%'";
-        loadClassify(sql);
-        txbClassify.setText("");
-    }//GEN-LAST:event_btnFindClassifyActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         int lick=JOptionPane.showConfirmDialog(null,"Bạn Có Muốn Thoát Khỏi Chương Trình Hay Không?","Thông Báo",2);
         if(lick==JOptionPane.OK_OPTION){
@@ -839,13 +801,49 @@ public class Find extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnRefreshEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshEmployeesActionPerformed
-        loadEmployees(sqlEmployees);
-    }//GEN-LAST:event_btnRefreshEmployeesActionPerformed
+    private void btnFindClassifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindClassifyActionPerformed
+        String sql = "SELECT * FROM Classify where ID like N'%"+this.txbClassify.getText()+"%' or Classify like N'%"+this.txbClassify.getText()+"%'";
+        loadClassify(sql);
+        txbClassify.setText("");
+    }//GEN-LAST:event_btnFindClassifyActionPerformed
 
-    private void btnRefreshProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshProductActionPerformed
-        loadProduct(sqlProduct);
-    }//GEN-LAST:event_btnRefreshProductActionPerformed
+    private void btnRefreshClassifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshClassifyActionPerformed
+        loadClassify(sqlClassify);
+    }//GEN-LAST:event_btnRefreshClassifyActionPerformed
+
+    private void btnFindpositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindpositionActionPerformed
+        // Tạo câu truy vấn SQL để tìm kiếm vị trí dựa trên thông tin nhập vào
+        String sql = "SELECT * FROM Position WHERE ID LIKE N'%" + this.txbPosition.getText() +
+        "%' OR Position LIKE N'%" + this.txbPosition.getText() +
+        "%' OR Payroll LIKE N'%" + this.txbPosition.getText() + "%'";
+
+        // Gọi phương thức loadPosition để cập nhật dữ liệu hiển thị trên giao diện
+        loadPosition(sql);
+        // Xóa nội dung trong trường văn bản txbPosition sau khi tìm kiếm
+        txbPosition.setText("");
+    }//GEN-LAST:event_btnFindpositionActionPerformed
+
+    private void btnRefreshPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshPositionActionPerformed
+        loadPosition(sqlPosition);
+    }//GEN-LAST:event_btnRefreshPositionActionPerformed
+
+    private void btnFindProducerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindProducerActionPerformed
+        // Tạo câu truy vấn SQL để tìm kiếm nhà sản xuất dựa trên thông tin nhập vào
+        String sql = "SELECT * FROM Producer WHERE ID LIKE N'%" + this.txbProducer.getText() +
+        "%' OR ProducerName LIKE N'%" + this.txbProducer.getText() +
+        "%' OR Address LIKE N'%" + this.txbProducer.getText() +
+        "%' OR Phone LIKE N'%" + this.txbProducer.getText() +
+        "%' OR Email LIKE N'%" + this.txbProducer.getText() + "%'";
+
+        // Gọi phương thức loadProducer để cập nhật dữ liệu hiển thị trên giao diện
+        loadProducer(sql);
+        // Xóa nội dung trong trường văn bản txbProducer sau khi tìm kiếm
+        txbProducer.setText("");
+    }//GEN-LAST:event_btnFindProducerActionPerformed
+
+    private void btnRefreshProducerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshProducerActionPerformed
+        loadProducer(sqlProducer);
+    }//GEN-LAST:event_btnRefreshProducerActionPerformed
 
     private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
         String sql = "SELECT * FROM Orders where ID like N'%"+this.txbOrders.getText()+"%' or Customer like N'%"+this.txbOrders.getText()+"%' or Address like N'%"+this.txbOrders.getText()+"%' or Phone like N'%"+this.txbOrders.getText()+"%' or Product like N'%"+this.txbOrders.getText()+"%' or Amount like N'%"+this.txbOrders.getText()+"%' or Price like N'%"+this.txbOrders.getText()+"%' or WarrantyPeriod like N'%"+this.txbOrders.getText()+"%' or intoMoney like N'%"+this.txbOrders.getText()+"' or Date like N'%"+this.txbOrders.getText()+"' or PaymentMethods like N'%"+this.txbOrders.getText()+"'";
@@ -853,21 +851,39 @@ public class Find extends javax.swing.JFrame {
         txbOrders.setText("");
     }//GEN-LAST:event_btnOrdersActionPerformed
 
-    private void btnRefreshProducerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshProducerActionPerformed
-        loadProducer(sqlProducer);
-    }//GEN-LAST:event_btnRefreshProducerActionPerformed
-
-    private void btnRefreshPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshPositionActionPerformed
-        loadPosition(sqlPosition);
-    }//GEN-LAST:event_btnRefreshPositionActionPerformed
-
-    private void btnRefreshClassifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshClassifyActionPerformed
-        loadClassify(sqlClassify);
-    }//GEN-LAST:event_btnRefreshClassifyActionPerformed
-
     private void btnRefreshOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshOrdersActionPerformed
         loadOrders(sqlOrders);
     }//GEN-LAST:event_btnRefreshOrdersActionPerformed
+
+    private void btnFindProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindProductActionPerformed
+        String sql = "SELECT * FROM Products where ID like N'%"+this.txbProduct.getText()+"%' or Classify like N'%"+this.txbProduct.getText()+"%' or Name like N'%"+this.txbProduct.getText()+"%' or Producer like N'%"+this.txbProduct.getText()+"%' or WarrantyPeriod like N'%"+this.txbProduct.getText()+"%' or SingleTime like N'%"+this.txbProduct.getText()+"%' or QuantityRemaining like N'%"+this.txbProduct.getText()+"%' or Unit like N'%"+this.txbProduct.getText()+"%' or Price like N'%"+this.txbProduct.getText()+"%'";
+        loadProduct(sql);
+        txbProduct.setText("");
+    }//GEN-LAST:event_btnFindProductActionPerformed
+
+    private void btnRefreshProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshProductActionPerformed
+        loadProduct(sqlProduct);
+    }//GEN-LAST:event_btnRefreshProductActionPerformed
+
+    private void btnFindEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindEmployeesActionPerformed
+        String sql = "SELECT * FROM NhanVien where Position like N'%"+this.txbEmployees.getText()+"%' or EmployeeCode like N'%"+this.txbEmployees.getText()+"%' or FullName like N'%"+this.txbEmployees.getText()+"%' or YearofBirth like N'%"+this.txbEmployees.getText()+"%' or Sex like N'%"+this.txbEmployees.getText()+"%' or Address like N'%"+this.txbEmployees.getText()+"%' or Phone like N'%"+this.txbEmployees.getText()+"%' or Email like N'%"+this.txbEmployees.getText()+"%' or Level like N'%"+this.txbEmployees.getText()+"' or Payroll like N'%"+this.txbEmployees.getText()+"'";
+        loadEmployees(sql);
+        txbEmployees.setText("");
+    }//GEN-LAST:event_btnFindEmployeesActionPerformed
+
+    private void btnRefreshEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshEmployeesActionPerformed
+        loadEmployees(sqlEmployees);
+    }//GEN-LAST:event_btnRefreshEmployeesActionPerformed
+
+    private void btnFindAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindAccountActionPerformed
+        String sqlFind="SELECT * FROM Accounts where UserName like N'%"+this.txbAccount.getText()+"%' or FullName like N'%"+this.txbAccount.getText()+"%' or DateCreated like N'%"+this.txbAccount.getText()+"%'";
+        loadAccount(sqlFind);
+        txbAccount.setText("");
+    }//GEN-LAST:event_btnFindAccountActionPerformed
+
+    private void btnRefreshAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshAccountActionPerformed
+        loadAccount(sqlAccount);
+    }//GEN-LAST:event_btnRefreshAccountActionPerformed
 
 
     public static void main(String args[]) {

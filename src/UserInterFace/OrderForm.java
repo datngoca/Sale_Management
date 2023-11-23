@@ -61,12 +61,15 @@ public class OrderForm extends javax.swing.JFrame {
         txbName.setEnabled(true);
         txbAddress.setEnabled(true);
         txbPhone.setEnabled(true);
-        cbxClassify.setEnabled(true);
-        //txbAmount.setEnabled(true);
+        cbxProduct.setEnabled(true);
+        btnProduct.setEnabled(true);
+        txbAmount.setEnabled(true);
+        txbPrice.setEnabled(true);
+        txbWarrantyPeriod.setEnabled(true);
+        txbIntoMoney.setEnabled(true);
         txbDate.setEnabled(true);
         cbxPaymentMethods.setEnabled(true);
-        btnProduct.setEnabled(true);
-        lblStatus.setText("Trạng Thái!");
+       
     }
     
     private void Disabled(){
@@ -455,6 +458,11 @@ public class OrderForm extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel9.setText("Số Lượng:");
 
+        txbAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txbAmountActionPerformed(evt);
+            }
+        });
         txbAmount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txbAmountKeyReleased(evt);
@@ -466,6 +474,11 @@ public class OrderForm extends javax.swing.JFrame {
         jLabel10.setToolTipText("");
 
         txbPrice.setEnabled(false);
+        txbPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txbPriceActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Thời Gian Bảo Hành:");
@@ -484,6 +497,12 @@ public class OrderForm extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel13.setText("Thanh Toán:");
+
+        cbxPaymentMethods.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxPaymentMethodsActionPerformed(evt);
+            }
+        });
 
         btnProduct.setText("...");
         btnProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -577,17 +596,18 @@ public class OrderForm extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addComponent(txbIntoMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txbAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(cbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(txbWarrantyPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(cbxPaymentMethods, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProduct))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(txbAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addComponent(cbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11)
+                        .addComponent(txbWarrantyPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)
+                        .addComponent(cbxPaymentMethods, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Refresh-icon.png"))); // NOI18N
@@ -904,13 +924,17 @@ public class OrderForm extends javax.swing.JFrame {
             String sqlDelete="DELETE FROM Orders WHERE Phone=? AND Customer=? AND Address=?";
             try{
                 pst=conn.prepareStatement(sqlDelete);
+                 // Đặt giá trị cho các tham số trong câu lệnh SQL
                 pst.setString(1, txbPhone.getText());
                 pst.setString(2, this.txbName.getText());
                 pst.setString(3, txbAddress.getText());
+                // Thực hiện câu lệnh SQL để xóa dữ liệu
                 pst.executeUpdate();
                 lblStatus.setText("Xóa đơn đặt hàng thành công!");
+                // Tắt các trạng thái và làm mới giao diện
                 Disabled();
                 Refresh();
+                  // Tải lại dữ liệu từ cơ sở dữ liệu và cập nhật JTable
                 Load(sql);
             }
             catch(Exception ex){
@@ -972,6 +996,18 @@ public class OrderForm extends javax.swing.JFrame {
     private void btnBackHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeActionPerformed
            // TODO add your handling code here:
     }//GEN-LAST:event_btnBackHomeActionPerformed
+
+    private void txbPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txbPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txbPriceActionPerformed
+
+    private void txbAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txbAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txbAmountActionPerformed
+
+    private void cbxPaymentMethodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPaymentMethodsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxPaymentMethodsActionPerformed
 
     public static void main(String args[]) {
         try {
